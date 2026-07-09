@@ -10,6 +10,7 @@
 :root {
     --c-blue:        #2f6fed;
     --c-blue-dark:   #1c4fb0;
+    --c-gray:        #64748b;
     --c-green:       #22c55e;
     --c-red:         #ef4444;
     --c-orange:      #f59e0b;
@@ -179,7 +180,7 @@ body {
 }
 /* PDF: 937, 205 — хар; 42 — сааралдуу */
 .stat-card--dark   .stat-card__value { color: var(--c-text); }
-.stat-card--gray   .stat-card__value { color: #64748b; }
+.stat-card--gray   .stat-card__value { color: var(--c-gray); }
 .stat-card--yellow .stat-card__value { color: var(--c-orange); }
 .stat-card--green  .stat-card__value { color: var(--c-green); }
 .stat-card--red    .stat-card__value { color: var(--c-red); }
