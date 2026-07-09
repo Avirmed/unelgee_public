@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="mn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Хуулийн хэрэгжилтийн үр дагаврын үнэлгээний нэгдсэн мэдээлэл</title>
+        <link href="img/logo.png" rel="icon">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="dashboard">
+
+            <!-- ==================== Толгой ==================== -->
+            <header class="header">
+                <div class="header__brand">
+                    <div class="header__logo">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="УИХ-ын Тамгын газар">
+                            <path d="M24 6 L40 16 L24 26 L8 16 Z" fill="none" stroke="#2f6fed" stroke-width="3.4" stroke-linejoin="round"/>
+                            <path d="M8 24 L24 34 L40 24" fill="none" stroke="#2f6fed" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                            <path d="M8 31.5 L24 41.5 L40 31.5" fill="none" stroke="#2f6fed" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="header__org"><strong>УЛСЫН ИХ ХУРЛЫН</strong><span>ТАМГЫН ГАЗАР</span></div>
+                </div>
+                <div class="header__center">
+                    <h1 class="header__title">Хуулийн хэрэгжилтийн үр дагаврын үнэлгээний нэгдсэн мэдээлэл</h1>
+                    <p class="header__subtitle" id="reportDate">&nbsp;</p>
+                </div>
+                <div class="header__date">
+                    <span class="date-badge"><i class="bi bi-calendar-event"></i><span id="dateBadge"></span></span>
+                </div>
+            </header>
+
+            <!-- ==================== Статистик картууд ==================== -->
+            <section class="stats">
+                <div class="stat-card stat-card--dark">
+                    <div class="stat-card__icon"><i class="bi bi-file-earmark-text"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="937">0</div>
+                        <div class="stat-card__label">Нийт хүчин төгөлдөр хууль</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--yellow">
+                    <div class="stat-card__icon"><i class="bi bi-clipboard-check"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="346">0</div>
+                        <div class="stat-card__label">Үнэлгээ хийх шаардлагатай</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--gray">
+                    <div class="stat-card__icon"><i class="bi bi-calendar"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="42">0</div>
+                        <div class="stat-card__label">Хугацаа болоогүй хууль</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__icon"><i class="bi bi-shield"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="304">0</div>
+                        <div class="stat-card__label">Үнэлгээ хийх хууль</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--green">
+                    <div class="stat-card__icon"><i class="bi bi-check-circle"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="170">0</div>
+                        <div class="stat-card__label">Үнэлгээ хийсэн (55.9%)</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--red">
+                    <div class="stat-card__icon"><i class="bi bi-x-circle"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="104">0</div>
+                        <div class="stat-card__label">Үнэлгээ хийгээгүй (34.2%)</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--orange">
+                    <div class="stat-card__icon"><i class="bi bi-clock"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="30">0</div>
+                        <div class="stat-card__label">Үнэлгээ хийгдэж буй (9.9%)</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--dark">
+                    <div class="stat-card__icon"><i class="bi bi-bar-chart"></i></div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value" data-value="205">0</div>
+                        <div class="stat-card__label">Нийт тайлан (2018-2026)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== Үндсэн самбарууд ==================== -->
+            <main class="panels">
+
+                <!-- ---------- Зүүн: Үнэлгээний байдал ---------- -->
+                <section class="panel">
+                    <h2 class="panel__title">Үнэлгээний байдал &amp; хамрах хувь</h2>
+
+                    <div class="charts-row">
+                        <div>
+                            <div id="chartDonut" class="chart chart--donut"></div>
+                        </div>
+                        <div>
+                            <div id="chartGauge" class="chart chart--gauge"></div>
+                            <div class="gauge-scale"><span>0%</span><span>100%</span></div>
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Үнэлгээний байдал</th>
+                                <th class="num">Хуулийн тоо</th>
+                                <th class="num">Хувь</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="dot dot--green"></span>Үнэлгээ хийсэн</td>
+                                <td class="num">170</td>
+                                <td class="num txt-green">55.9%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="dot dot--red"></span>Үнэлгээ хийгээгүй</td>
+                                <td class="num">104</td>
+                                <td class="num txt-red">34.2%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="dot dot--orange"></span>Үнэлгээ хийгдэж байгаа</td>
+                                <td class="num">30</td>
+                                <td class="num txt-orange">9.9%</td>
+                            </tr>
+                            <tr class="row-total">
+                                <td>Нийт (304 хуулийн хүрээнд)</td>
+                                <td class="num">304</td>
+                                <td class="num">100.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="note">
+                        <b>Жич:</b> Хугацаа болоогүй 42 хууль (13.9%) нь үнэлгээний дүнгээс гадуур үлдсэн болно.
+                    </p>
+                </section>
+
+                <!-- ---------- Дунд: Тренд ба хугацаа ---------- -->
+                <section class="panel">
+                    <h2 class="panel__title">Жил бүр хийсэн үнэлгээний тренд</h2>
+
+                    <div id="chartTrend" class="chart chart--line"></div>
+
+                    <table class="data-table">
+                        <thead id="trendHead"><!-- app.js-ээр бөглөнө --></thead>
+                        <tbody id="trendBody"><!-- app.js-ээр бөглөнө --></tbody>
+                    </table>
+
+                    <h3 class="panel__subtitle">Үнэлгээ хийх хугацаа болсон байдал (сүүлийн 4 жил)</h3>
+
+                    <div class="legend">
+                        <span><i style="background:#2f6fed"></i>Хугацаа болсон</span>
+                        <span><i style="background:#22c55e"></i>Үүнээс: Үнэлсэн</span>
+                        <span><i class="line" style="background:#f59e0b"></i>Гүйцэтгэлийн хувь</span>
+                    </div>
+
+                    <div id="chartCombo" class="chart chart--combo"></div>
+
+                    <p class="combo-summary">Нийт: <b>223</b> / Үнэлсэн: <b>124</b> (55.6%)</p>
+                </section>
+
+                <!-- ---------- Баруун: Хариуцсан байгууллага ---------- -->
+                <section class="panel">
+                    <h2 class="panel__title">Хариуцсан байгууллагаар (топ 10)</h2>
+
+                    <table class="data-table org-table">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Хариуцсан байгууллага</th>
+                                <th class="num">Хуулийн тоо</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orgTableBody">
+                            <!-- app.js-ээр бөглөнө -->
+                        </tbody>
+                    </table>
+
+                    <div class="highlight">
+                        <span class="highlight__label">Нийт (давхардсан тоогоор):</span>
+                        <span class="highlight__value" id="orgTotal" data-value="0">0</span>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- ==================== Хөл ==================== -->
+            <footer class="footer">
+                Хууль тогтоомжийн хэрэгжилтийн үнэлгээний газар
+            </footer>
+
+        </div>
+
+        <script src="js/libs/jquery-3.7.1.min.js"></script>
+        <script src="js/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="js/libs/bootbox/bootbox.min.js"></script>
+        <script src="js/libs/echarts/dist/echarts.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>

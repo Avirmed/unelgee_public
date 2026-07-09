@@ -1,0 +1,406 @@
+@import url("../js/libs/bootstrap/css/bootstrap.min.css");
+@import url("bootstrap-icons/font/bootstrap-icons.css");
+
+/* ============================================================
+   Хуулийн хэрэгжилтийн үр дагаврын үнэлгээ — Dashboard загвар
+   Суурь фонт: 12px. Өнгө, фонт, бүтэц PDF эх загварын дагуу.
+   ============================================================ */
+
+/* ---------- Өнгөний хувьсагчид ---------- */
+:root {
+    --c-blue:        #2f6fed;
+    --c-blue-dark:   #1c4fb0;
+    --c-green:       #22c55e;
+    --c-red:         #ef4444;
+    --c-orange:      #f59e0b;
+
+    --c-text:        #1f2b44;
+    --c-muted:       #8a94a6;
+    --c-border:      #e6e9f0;
+    --c-line:        #eef1f6;
+
+    --c-page:        #eceff4;
+    --c-card:        #ffffff;
+    --c-footer:      #16213a;
+
+    --radius:        12px;
+    --shadow:        0 1px 3px rgba(20, 33, 61, .06),
+                     0 1px 2px rgba(20, 33, 61, .04);
+}
+
+/* ---------- Ерөнхий ---------- */
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--c-page);
+    color: var(--c-text);
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;           /* footer-г дэлгэцийн доор байрлуулах */
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 16px 18px 0;
+}
+
+/* ============================================================
+   Толгой хэсэг
+   ============================================================ */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.header__brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 215px;
+}
+
+.header__logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-blue);
+    flex-shrink: 0;
+}
+.header__logo svg { width: 40px; height: 40px; display: block; }
+
+/* Логотой адил: эхний мөр бараан navy, доод мөр цэнхэр — хоёулаа bold */
+.header__org {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.12;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+}
+.header__org strong { font-size: 13px; font-weight: 700; color: var(--c-text); }
+.header__org span   { font-size: 13px; font-weight: 700; color: var(--c-blue); }
+
+.header__center { flex: 1; text-align: center; }
+
+.header__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    color: var(--c-text);
+    text-transform: uppercase;
+}
+
+.header__subtitle {
+    margin: 3px 0 0;
+    font-size: 11px;
+    color: var(--c-muted);
+}
+
+.header__date { min-width: 215px; text-align: right; }
+
+.date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid #cfe0fb;
+    background: #eaf1fe;
+    color: var(--c-blue-dark);
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* ============================================================
+   Статистик картууд
+   ============================================================ */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 11px;
+    margin-bottom: 15px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 64px;                 /* бүх карт ижил өндөр */
+    padding: 12px 13px;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.stat-card--green  { border-left: 3px solid var(--c-green); }
+.stat-card--red    { border-left: 3px solid var(--c-red); }
+.stat-card--orange { border-left: 3px solid var(--c-orange); }
+
+.stat-card__icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #eef3ff;
+    color: var(--c-blue);
+}
+.stat-card__icon i { font-size: 18px; }
+
+.stat-card--green  .stat-card__icon { background: #e7f8ef; color: var(--c-green); }
+.stat-card--red    .stat-card__icon { background: #fdeaea; color: var(--c-red); }
+.stat-card--orange .stat-card__icon { background: #fef3e2; color: var(--c-orange); }
+.stat-card--yellow .stat-card__icon { background: #fef7e0; color: var(--c-orange); }
+
+.stat-card__body {
+    min-width: 0;
+    margin-left: auto;        /* агуулгыг баруун тал руу шахах */
+    text-align: right;
+}
+
+.stat-card__value {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--c-blue);     /* дундах картууд — өөрийн өнгөтэй (цэнхэр) */
+}
+/* PDF: 937, 205 — хар; 42 — сааралдуу */
+.stat-card--dark   .stat-card__value { color: var(--c-text); }
+.stat-card--gray   .stat-card__value { color: #64748b; }
+.stat-card--yellow .stat-card__value { color: var(--c-orange); }
+.stat-card--green  .stat-card__value { color: var(--c-green); }
+.stat-card--red    .stat-card__value { color: var(--c-red); }
+.stat-card--orange .stat-card__value { color: var(--c-orange); }
+
+.stat-card__label {
+    margin-top: 5px;
+    font-size: 10.5px;
+    color: var(--c-muted);
+    line-height: 1.25;
+}
+
+/* ============================================================
+   Үндсэн самбарууд (3 багана)
+   ============================================================ */
+.panels {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 15px;
+    align-items: stretch;        /* гурван самбар ижил өндөр */
+    margin-bottom: 16px;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;      /* доторх агуулгыг босоо өрж note/highlight-г доор байрлуулах */
+    height: 100%;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 15px 17px;
+}
+
+.panel__title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 13px;
+    font-size: 14px;
+    font-weight: 600;
+    /* letter-spacing: .3px; */
+    color: var(--c-text);
+    text-transform: uppercase;
+}
+.panel__title::before {
+    content: "";
+    width: 4px;
+    height: 15px;
+    border-radius: 2px;
+    background: var(--c-blue);
+}
+
+.panel__subtitle {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 20px 0 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    color: var(--c-text);
+    text-transform: uppercase;
+}
+.panel__subtitle::before {
+    content: "";
+    width: 4px;
+    height: 14px;
+    border-radius: 2px;
+    background: var(--c-blue);
+}
+
+/* ---------- График сав ---------- */
+.chart { width: 100%; }
+
+.charts-row {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 8px;
+    align-items: center;
+}
+
+.chart--donut { height: 195px; }
+.chart--gauge { height: 195px; }
+.chart--line  { height: 205px; }
+.chart--combo { height: 225px; }
+
+.gauge-scale {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: -14px;
+    font-size: 10px;
+    color: var(--c-muted);
+}
+
+/* ============================================================
+   Хүснэгтүүд
+   ============================================================ */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 8px;
+    font-weight: 600;
+    color: var(--c-muted);
+    background: #f6f8fb;
+    border-bottom: 1px solid var(--c-border);
+    font-size: 11px;
+}
+.data-table th.num,
+.data-table td.num { text-align: right; }
+
+.data-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--c-line);
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+
+.data-table .row-total td {
+    font-weight: 600;
+    color: var(--c-text);
+    border-top: 2px solid var(--c-border);
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+.dot--green  { background: var(--c-green); }
+.dot--red    { background: var(--c-red); }
+.dot--orange { background: var(--c-orange); }
+
+.txt-green  { color: var(--c-green);  font-weight: 600; }
+.txt-red    { color: var(--c-red);    font-weight: 600; }
+.txt-orange { color: var(--c-orange); font-weight: 600; }
+
+.org-table td.rank { color: var(--c-muted); width: 26px; }
+.org-table td.count { color: var(--c-blue); font-weight: 600; }
+.org-table tbody tr { cursor: pointer; }
+.org-table tbody tr:hover { background: #f6f8fb; }
+
+/* ---------- Тэмдэглэл ---------- */
+.note {
+    margin-top: auto;            /* card-ны доор наагдана */
+    padding: 10px 12px;
+    background: #f6f8fb;
+    border-radius: 8px;
+    font-size: 10.5px;
+    color: var(--c-muted);
+}
+
+/* ---------- Онцлох тоо (баруун доод) ---------- */
+.highlight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;            /* card-ны доор наагдана */
+    padding: 14px 17px;
+    background: #eef3ff;
+    border: 1px solid #d7e3fb;
+    border-radius: var(--radius);
+}
+.highlight__label { font-size: 11.5px; font-weight: 600; color: var(--c-blue-dark); }
+.highlight__value { font-size: 18px; font-weight: 600; color: var(--c-text); }
+
+/* ---------- Графикийн тайлбар (legend) ---------- */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin: 4px 0 6px;
+    font-size: 10.5px;
+    color: var(--c-text);
+}
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.legend i.line { height: 3px; border-radius: 2px; }
+
+.combo-summary {
+    font-size: 10.5px;
+    color: var(--c-muted);
+    text-align: right;
+    margin-top: 2px;
+}
+.combo-summary b { color: var(--c-blue); }
+
+/* ============================================================
+   Хөл хэсэг
+   ============================================================ */
+.footer {
+    margin: 16px -18px 0;
+    margin-top: auto;            /* агуулга богино үед доор наагдана */
+    padding: 15px 18px;
+    background: var(--c-footer);
+    color: #cdd6e6;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1200px) {
+    .stats  { grid-template-columns: repeat(4, 1fr); }
+    .panels { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .stats  { grid-template-columns: repeat(2, 1fr); }
+    .header { flex-wrap: wrap; }
+    .header__center { order: 3; flex-basis: 100%; }
+}
